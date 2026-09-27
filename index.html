@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Lokdhara is a digital database that documents, preserves and promotes India's folk dances, music, instruments, festivals, crafts, oral traditions and traditional knowledge across every state and union territory.">
+<meta name="theme-color" content="#06121c">
+<title>Lokdhara — India's Living Folk Heritage Database</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%AA%94%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,300..800&family=Anek+Devanagari:wdth,wght@75..125,300..800&family=Anek+Bangla:wdth,wght@75..125,300..800&family=Anek+Tamil:wdth,wght@75..125,300..800&family=Anek+Telugu:wdth,wght@75..125,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="backdrop" aria-hidden="true"></div>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="topbar" id="topbar">
+  <a class="brand" href="#home" data-route="home" aria-label="Lokdhara home">
+    <span class="logo-mark" aria-hidden="true"><span class="logo-petals"></span><span class="logo-ring"></span><span class="logo-core">लो</span></span>
+    <span class="brand-text"><b class="brand-deva">लोकधारा</b><small class="brand-latin">LOKDHARA <i>·</i> <span data-i18n="brand_sub">Folk Heritage of India</span></small></span>
+  </a>
+
+  <nav class="mainnav" aria-label="Primary">
+    <a href="#home" data-route="home" data-i18n="nav_home">Home</a>
+    <a href="#about" data-route="about" data-i18n="nav_about">About</a>
+    <a href="#database" data-route="database" data-i18n="nav_db">Cultural Database</a>
+    <a href="#map" data-route="map" data-i18n="nav_map">India Map</a>
+    <a href="#stats" data-route="stats" data-i18n="nav_stats">Statistics</a>
+    <a href="#archive" data-route="archive" data-i18n="nav_archive">Digital Archive</a>
+    <a href="#research" data-route="research" data-i18n="nav_research">Research &amp; Reports</a>
+    <button class="nav-more" id="navMore" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav_more">More</span> ▾</button>
+    <div class="nav-pop" id="navPop" role="menu">
+      <a href="#survey" data-route="survey" data-i18n="nav_survey">Field Survey</a>
+      <a href="#compare" data-route="compare" data-i18n="nav_compare">Compare</a>
+      <a href="#sources" data-route="sources" data-i18n="nav_sources">Sources</a>
+      <a href="#contact" data-route="contact" data-i18n="nav_contact">Contact / Contribute</a>
+    </div>
+  </nav>
+
+  <div class="tools">
+    <button class="tool-btn search-btn" id="searchBtn" aria-label="Search the database"><span class="glyph" aria-hidden="true">🔍</span><span class="kbd">Ctrl K</span></button>
+    <label class="lang-wrap">
+      <span class="sr-only">Language</span>
+      <select id="langSel" aria-label="Choose language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+        <option value="bn">বাংলা</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+      </select>
+    </label>
+    <button class="tool-btn" id="themeBtn" aria-label="Switch light or dark theme"><span class="glyph" aria-hidden="true">◐</span></button>
+    <button class="tool-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span class="glyph" aria-hidden="true">☰</span></button>
+  </div>
+</header>
+
+<!-- ===================== DRAWER (mobile) ===================== -->
+<div class="drawer-scrim" id="drawerScrim" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Site menu">
+  <div class="drawer-head">
+    <b class="brand-deva">लोकधारा</b>
+    <button class="tool-btn" id="drawerClose" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#home" data-route="home"><span>🏠</span><span data-i18n="nav_home">Home</span></a>
+    <a href="#about" data-route="about"><span>🪷</span><span data-i18n="nav_about">About</span></a>
+    <a href="#database" data-route="database"><span>📚</span><span data-i18n="nav_db">Cultural Database</span></a>
+    <a href="#map" data-route="map"><span>🗺️</span><span data-i18n="nav_map">India Map</span></a>
+    <a href="#stats" data-route="stats"><span>📊</span><span data-i18n="nav_stats">Statistics</span></a>
+    <a href="#survey" data-route="survey"><span>🧭</span><span data-i18n="nav_survey">Field Survey</span></a>
+    <a href="#archive" data-route="archive"><span>🗃️</span><span data-i18n="nav_archive">Digital Archive</span></a>
+    <a href="#compare" data-route="compare"><span>⚖️</span><span data-i18n="nav_compare">Compare</span></a>
+    <a href="#research" data-route="research"><span>🔬</span><span data-i18n="nav_research">Research &amp; Reports</span></a>
+    <a href="#sources" data-route="sources"><span>🔖</span><span data-i18n="nav_sources">Sources</span></a>
+    <a href="#contact" data-route="contact"><span>🤝</span><span data-i18n="nav_contact">Contact / Contribute</span></a>
+  </nav>
+  <button class="btn ghost full" id="gtBtnDrawer" data-i18n="translate_all">Translate full page</button>
+</aside>
+
+<main id="main" tabindex="-1">
+
+<!-- ===================== HOME ===================== -->
+<section class="page" data-page="home" aria-labelledby="heroTitle">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="hero-kicker" data-i18n="hero_kicker">A digital database of India's living folk heritage, 2026</p>
+      <h1 id="heroTitle" data-i18n="hero_title">The living stream of India's folk heritage</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Dances, songs, instruments, festivals, crafts, stories and wisdom from every state and union territory — documented with care, shared with pride, and passed on with joy.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#database" data-i18n="cta_explore">Explore the database</a>
+        <a class="btn ghost" href="#map" data-i18n="cta_map">Open India map</a>
+      </div>
+      <dl class="hero-figures" id="heroFigures"></dl>
+    </div>
+    <div class="hero-mosaic" id="heroMosaic" aria-label="Photographs of Indian folk traditions"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="tod" id="todBlock"></div>
+
+    <section class="block">
+      <header class="block-head">
+        <h2 data-i18n="cats_title">Seven streams of heritage</h2>
+        <p class="lede">Each stream holds a different way our ancestors expressed joy, faith, skill and wisdom. Choose one to begin.</p>
+      </header>
+      <div class="stream-grid" id="streamGrid"></div>
+    </section>
+
+    <section class="block split">
+      <div>
+        <h2>From rock shelters to digital archives</h2>
+        <p class="lede">Twelve thousand years of creativity, told as one continuous story. Scroll the thread, then open the full chronology in Research &amp; Reports.</p>
+        <a class="btn ghost" href="#research">Read the full chronology</a>
+      </div>
+      <ol class="thread" id="homeThread"></ol>
+    </section>
+
+    <section class="block">
+      <header class="block-head">
+        <h2>Celebrated by the world</h2>
+        <p class="lede">India's elements on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity.</p>
+      </header>
+      <div class="unesco-strip" id="unescoStrip"></div>
+    </section>
+
+    <section class="block regions" id="regionBlock"></section>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="page" data-page="about" aria-labelledby="aboutTitle">
+  <div class="wrap narrow">
+    <h1 id="aboutTitle" data-i18n="about_title">About the project</h1>
+    <p class="lead" data-i18n="about_lead">Lokdhara is a digital database that documents, preserves and promotes India's ancient folk traditions — bringing dances, music, instruments, festivals, crafts, oral traditions and traditional knowledge together on one open, structured platform.</p>
+
+    <div class="about-pair">
+      <article>
+        <h2 data-i18n="vision_t">Vision</h2>
+        <p>An India where every child can hear the songs of their grandparents, every artisan earns with dignity, and every village tradition has a secure, celebrated place in the nation's memory.</p>
+      </article>
+      <article>
+        <h2 data-i18n="mission_t">Mission</h2>
+        <p>To map, record and share India's folk heritage state by state and district by district, working hand in hand with communities, researchers and institutions so that knowledge flows freely to the next generation.</p>
+      </article>
+    </div>
+
+    <h2 data-i18n="objectives_t">Objectives</h2>
+    <ol class="objectives">
+      <li><b>Document comprehensively.</b> Build a structured record of folk dances, music, instruments, festivals, arts and crafts, oral traditions and traditional knowledge from all 28 states and 8 union territories.</li>
+      <li><b>Preserve for generations.</b> Create lasting digital archives of stories, songs, images and practices using open, durable formats.</li>
+      <li><b>Promote with pride.</b> Bring folk traditions to classrooms, screens and public life so that more people discover, enjoy and practise them.</li>
+      <li><b>Empower tradition bearers.</b> Give artists, artisans and communities visibility, credit and new opportunities for livelihood.</li>
+      <li><b>Strengthen research.</b> Offer clean, comparable data for statistical analysis, cultural mapping and policy planning.</li>
+      <li><b>Encourage participation.</b> Invite students, surveyors and citizens to contribute knowledge through field surveys and community validation.</li>
+      <li><b>Celebrate diversity and unity.</b> Show how many languages, faiths and landscapes together form one shared cultural heritage.</li>
+    </ol>
+
+    <h2>How Lokdhara works</h2>
+    <ol class="method-steps">
+      <li><b>Cultural mapping.</b> Each tradition is linked to its state, districts and localities so it can be explored on the India map.</li>
+      <li><b>Field surveys.</b> Surveyors record practitioners, transmission methods and community needs with a standard form.</li>
+      <li><b>Classification.</b> Every entry is tagged by category, historical period and vitality status for consistent analysis.</li>
+      <li><b>Statistical analysis.</b> Dashboards reveal patterns by state, category, period and status.</li>
+      <li><b>Digital archiving.</b> Records receive accession numbers and are grouped by media type for long-term access.</li>
+      <li><b>Community validation.</b> Tradition bearers review and enrich entries, keeping the database accurate and respectful.</li>
+    </ol>
+
+    <h2>Who Lokdhara serves</h2>
+    <div class="audience">
+      <div><span>🎓</span><b>Students</b><p>Project work, assignments and discovering the heritage of their own district.</p></div>
+      <div><span>🔬</span><b>Researchers</b><p>Structured, comparable data with sources for folklore, anthropology and cultural studies.</p></div>
+      <div><span>🏛️</span><b>Institutions</b><p>Cultural departments, museums and NGOs planning conservation and promotion.</p></div>
+      <div><span>🧑‍🎨</span><b>Tradition bearers</b><p>Artists and artisans sharing their work with a wider audience.</p></div>
+      <div><span>🌏</span><b>Society</b><p>Everyone who wants to know, enjoy and pass on India's living culture.</p></div>
+    </div>
+
+    <h2>Status labels, explained</h2>
+    <div class="status-legend" id="statusLegend"></div>
+  </div>
+</section>
+
+<!-- ===================== DATABASE ===================== -->
+<section class="page" data-page="database" aria-labelledby="dbTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="dbTitle" data-i18n="db_title">Cultural database</h1>
+      <p class="lede">Browse every documented tradition. Filter by category, state, period and status, or save favourites to revisit later.</p>
+    </header>
+    <div class="cat-tabs" id="catTabs" role="tablist"></div>
+    <div class="filters">
+      <label class="field grow"><span class="sr-only">Search</span>
+        <input type="search" id="dbSearch" data-i18n-ph="search_ph" placeholder="Search traditions, states, districts…">
+      </label>
+      <label class="field"><span data-i18n="state">State</span><select id="fState"></select></label>
+      <label class="field"><span data-i18n="period">Period</span><select id="fPeriod"></select></label>
+      <label class="field"><span data-i18n="status">Status</span><select id="fStatus"></select></label>
+      <label class="field"><span>Sort</span>
+        <select id="fSort">
+          <option value="name">Name A–Z</option>
+          <option value="state">State</option>
+          <option value="period">Oldest first</option>
+          <option value="status">Status</option>
+        </select>
+      </label>
+    </div>
+    <div class="db-bar">
+      <p id="dbCount" aria-live="polite"></p>
+      <div class="db-actions">
+        <label class="switch"><input type="checkbox" id="fSaved"><span data-i18n="saved">Saved</span></label>
+        <label class="switch"><input type="checkbox" id="fUnesco"><span>UNESCO</span></label>
+        <label class="switch"><input type="checkbox" id="fGI"><span>GI</span></label>
+        <div class="seg small" role="tablist" aria-label="View"><button class="active" data-view="cards">Cards</button><button data-view="table">Table + references</button></div>
+        <button class="btn small ghost" id="exportCsv">CSV</button>
+        <button class="btn small ghost" id="exportJson">JSON</button>
+      </div>
+    </div>
+    <div class="t-grid" id="dbGrid"></div>
+    <div class="db-table-wrap" id="dbTableWrap" hidden><table class="db-table" id="dbTable"></table></div>
+    <div class="center"><button class="btn ghost" id="dbMore" data-i18n="load_more">Load more</button></div>
+  </div>
+</section>
+
+<!-- ===================== MAP ===================== -->
+<section class="page" data-page="map" aria-labelledby="mapTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="mapTitle" data-i18n="map_title">India cultural map</h1>
+      <p class="lede" data-i18n="map_hint">Select a state, then a district, to discover its traditions.</p>
+    </header>
+    <div class="map-layout">
+      <div class="map-stage">
+        <div class="map-controls">
+          <label class="field"><span>Colour by</span>
+            <select id="mapMode"></select>
+          </label>
+          <div class="map-scale" id="mapScale"></div>
+        </div>
+        <svg id="indiaMap" role="img" aria-label="Tile map of Indian states and union territories"></svg>
+        <p class="map-note">A tile cartogram: each tile is one state or union territory, placed by its approximate geographic position so that small regions stay easy to tap.</p>
+      </div>
+      <aside class="map-panel" id="mapPanel" aria-live="polite"></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATISTICS ===================== -->
+<section class="page" data-page="stats" aria-labelledby="statsTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="statsTitle" data-i18n="stats_title">Statistics &amp; insights</h1>
+      <p class="lede">Live analysis of the Lokdhara database, recalculated every time the data grows.</p>
+    </header>
+    <div class="kpi-row" id="kpiRow"></div>
+    <nav class="stat-tabs" id="statTabs" role="tablist">
+      <button data-tab="state" class="active">State-wise</button>
+      <button data-tab="category">Category-wise</button>
+      <button data-tab="period">Period-wise</button>
+      <button data-tab="status">Status-wise</button>
+      <button data-tab="heat">Heatmap</button>
+    </nav>
+    <div class="stat-body" id="statBody"></div>
+    <section class="insights">
+      <h2>Key insights</h2>
+      <ul id="insightList"></ul>
+    </section>
+    <section class="block">
+      <h2>India's heritage at a glance</h2>
+      <p class="lede">National reference figures from official sources, for context alongside the database.</p>
+      <div class="facts" id="nationalFacts"></div>
+    </section>
+  </div>
+</section>
+
+<!-- ===================== FIELD SURVEY ===================== -->
+<section class="page" data-page="survey" aria-labelledby="surveyTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="surveyTitle" data-i18n="survey_title">Field survey</h1>
+      <p class="lede">Record a tradition in your village or town. Entries are saved on this device and can be exported for review by the Lokdhara team.</p>
+    </header>
+
+    <ol class="survey-flow">
+      <li><b>Prepare</b><span>Learn the community's customs and seek permission from elders.</span></li>
+      <li><b>Consent</b><span>Explain the purpose and record free, prior and informed consent.</span></li>
+      <li><b>Observe &amp; record</b><span>Capture audio, photos, video and detailed notes.</span></li>
+      <li><b>Describe</b><span>Fill in this form while details are fresh.</span></li>
+      <li><b>Validate</b><span>Read the entry back to the practitioners and correct it together.</span></li>
+      <li><b>Share</b><span>Export the record and send it with your media files.</span></li>
+    </ol>
+
+    <div class="survey-layout">
+      <form class="survey-form" id="surveyForm" novalidate>
+        <fieldset>
+          <legend>Surveyor</legend>
+          <label class="field"><span>Your name *</span><input name="surveyor" required autocomplete="name"></label>
+          <label class="field"><span>Institution / school</span><input name="institution"></label>
+          <label class="field"><span>Date of survey *</span><input type="date" name="date" required></label>
+        </fieldset>
+        <fieldset>
+          <legend>Location</legend>
+          <label class="field"><span>State / UT *</span><select name="state" id="svState" required></select></label>
+          <label class="field"><span>District *</span><input name="district" required></label>
+          <label class="field"><span>Village / town</span><input name="village"></label>
+          <div class="geo-row">
+            <label class="field"><span>Coordinates</span><input name="geo" id="svGeo" placeholder="Latitude, longitude"></label>
+            <button type="button" class="btn small ghost" id="svLocate">Use my location</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Tradition</legend>
+          <label class="field"><span>Name of tradition *</span><input name="name" required></label>
+          <label class="field"><span>Category *</span><select name="cat" id="svCat" required></select></label>
+          <label class="field"><span>Earliest known period</span><select name="period" id="svPeriod"></select></label>
+          <label class="field"><span>Vitality today</span><select name="status" id="svStatus"></select></label>
+          <label class="field"><span>Community / practitioners</span><input name="community" placeholder="e.g. Warli community, 40 families"></label>
+          <label class="field"><span>Approximate number of active practitioners</span><input type="number" min="0" name="count"></label>
+          <label class="field"><span>How is it passed on?</span>
+            <select name="transmission">
+              <option>Within the family</option><option>Guru–shishya</option><option>Community gatherings</option><option>School or institution</option><option>Digital media</option>
+            </select>
+          </label>
+          <label class="field"><span>Season or occasion</span><input name="occasion" placeholder="e.g. harvest, weddings, Navratri"></label>
+          <label class="field full"><span>Description *</span><textarea name="desc" rows="4" required></textarea></label>
+          <label class="field full"><span>What support would help it flourish?</span><textarea name="support" rows="3" placeholder="e.g. youth training, market access, recording, festival stage"></textarea></label>
+        </fieldset>
+        <label class="check"><input type="checkbox" name="consent" required> The community has given informed consent to document and share this tradition.</label>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Save survey entry</button>
+          <button class="btn ghost" type="reset">Clear form</button>
+        </div>
+        <p class="form-msg" id="svMsg" role="status"></p>
+      </form>
+      <aside class="survey-side">
+        <h2>Saved entries</h2>
+        <div id="svList" class="sv-list"></div>
+        <div class="form-actions">
+          <button class="btn small ghost" id="svCsv">Export CSV</button>
+          <button class="btn small ghost" id="svJson">Export JSON</button>
+        </div>
+        <h3>Surveyor's kit</h3>
+        <ul class="kit">
+          <li>Notebook and printed consent form in the local language</li>
+          <li>Phone with audio recorder, camera and GPS</li>
+          <li>Spare battery or power bank</li>
+          <li>List of questions: origin, occasion, songs, tools, materials, teachers</li>
+          <li>Small gift of gratitude as per local custom</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHIVE ===================== -->
+<section class="page" data-page="archive" aria-labelledby="archiveTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="archiveTitle" data-i18n="archive_title">Digital archive</h1>
+      <p class="lede">Every tradition receives an accession number and a photograph from Wikimedia Commons or Wikipedia, credited to its photographer and licence. Browse the collection like a museum catalogue and open any record to listen to its description.</p>
+    </header>
+    <div class="filters">
+      <label class="field"><span>Record type</span><select id="arType"></select></label>
+      <label class="field"><span data-i18n="category">Category</span><select id="arCat"></select></label>
+      <label class="field"><span data-i18n="state">State</span><select id="arState"></select></label>
+      <label class="field grow"><span>Accession number or name</span><input type="search" id="arSearch" placeholder="e.g. LKD-2026-0042"></label>
+    </div>
+    <p id="arCount" class="muted" aria-live="polite"></p>
+    <div class="archive-grid" id="arGrid"></div>
+    <div class="center"><button class="btn ghost" id="arMore" data-i18n="load_more">Load more</button></div>
+  </div>
+</section>
+
+<!-- ===================== COMPARE ===================== -->
+<section class="page" data-page="compare" aria-labelledby="compareTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="compareTitle" data-i18n="compare_title">Compare</h1>
+      <p class="lede">Set states side by side to see how their heritage profiles differ, or compare two traditions in detail.</p>
+    </header>
+    <div class="seg" role="tablist">
+      <button class="active" data-cmp="states">States &amp; UTs</button>
+      <button data-cmp="traditions">Traditions</button>
+    </div>
+    <div id="cmpStates">
+      <div class="filters">
+        <label class="field"><span>First</span><select id="cmpA"></select></label>
+        <label class="field"><span>Second</span><select id="cmpB"></select></label>
+        <label class="field"><span>Third (optional)</span><select id="cmpC"></select></label>
+      </div>
+      <div class="cmp-layout">
+        <div class="cmp-radar" id="cmpRadar"></div>
+        <div class="cmp-table-wrap"><table class="cmp-table" id="cmpTable"></table></div>
+      </div>
+    </div>
+    <div id="cmpTrads" hidden>
+      <div class="filters">
+        <label class="field grow"><span>First tradition</span><input list="tradList" id="cmpT1" placeholder="Type a name"></label>
+        <label class="field grow"><span>Second tradition</span><input list="tradList" id="cmpT2" placeholder="Type a name"></label>
+        <datalist id="tradList"></datalist>
+      </div>
+      <div class="cmp-trads" id="cmpTradOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESEARCH ===================== -->
+<section class="page" data-page="research" aria-labelledby="researchTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="researchTitle" data-i18n="research_title">Research &amp; reports</h1>
+      <p class="lede">In-depth reports from prehistory to 2026, built on the live database and national sources. Each report can be printed or downloaded.</p>
+    </header>
+    <nav class="report-index" id="reportIndex" aria-label="Reports"></nav>
+    <div id="reports"></div>
+  </div>
+</section>
+
+<!-- ===================== SOURCES ===================== -->
+<section class="page" data-page="sources" aria-labelledby="sourcesTitle">
+  <div class="wrap narrow">
+    <h1 id="sourcesTitle" data-i18n="sources_title">Sources &amp; references</h1>
+    <p class="lead">Lokdhara brings together publicly available information from government bodies, academies, international organisations and scholarly works. Community members and experts are warmly invited to strengthen every entry.</p>
+
+    <h2>Government &amp; national institutions</h2>
+    <ul class="src-list">
+      <li><b>Ministry of Culture, Government of India</b><span>Policy, schemes and the national inventory of intangible cultural heritage.</span><a href="https://www.indiaculture.gov.in" target="_blank" rel="noopener">indiaculture.gov.in</a></li>
+      <li><b>Sangeet Natak Akademi (est. 1952)</b><span>National academy of music, dance and drama; nodal body for intangible heritage.</span><a href="https://www.sangeetnatak.gov.in" target="_blank" rel="noopener">sangeetnatak.gov.in</a></li>
+      <li><b>Indira Gandhi National Centre for the Arts (est. 1987)</b><span>Research, documentation and the Janapada Sampada division on folk and tribal lifestyles.</span><a href="https://ignca.gov.in" target="_blank" rel="noopener">ignca.gov.in</a></li>
+      <li><b>Mera Gaon Meri Dharohar — National Mission on Cultural Mapping</b><span>Village-level cultural mapping portal of the Ministry of Culture.</span><a href="https://mgmd.gov.in" target="_blank" rel="noopener">mgmd.gov.in</a></li>
+      <li><b>Seven Zonal Cultural Centres (est. 1985–86)</b><span>North, North Central, Eastern, South, South Central, West and North-East zones promoting regional arts.</span></li>
+      <li><b>Geographical Indications Registry, Chennai</b><span>Official register of GI-tagged crafts, textiles and agricultural products.</span><a href="https://ipindia.gov.in" target="_blank" rel="noopener">ipindia.gov.in</a></li>
+      <li><b>Office of the Development Commissioner (Handicrafts)</b><span>Craft clusters, artisan schemes and national awards.</span><a href="https://handicrafts.nic.in" target="_blank" rel="noopener">handicrafts.nic.in</a></li>
+      <li><b>Anthropological Survey of India</b><span>People of India project (1985 onward) documenting 4,635 communities.</span><a href="https://ansi.gov.in" target="_blank" rel="noopener">ansi.gov.in</a></li>
+      <li><b>Census of India 2011 and state gazettes</b><span>Language, district and village statistics; district register updated to the latest official lists.</span><a href="https://censusindia.gov.in" target="_blank" rel="noopener">censusindia.gov.in</a></li>
+      <li><b>Traditional Knowledge Digital Library (2001)</b><span>Protection of India's traditional medicinal knowledge.</span><a href="https://www.tkdl.res.in" target="_blank" rel="noopener">tkdl.res.in</a></li>
+      <li><b>National Mission for Manuscripts (2003)</b><span>Survey and digitisation of India's manuscript heritage.</span><a href="https://www.namami.gov.in" target="_blank" rel="noopener">namami.gov.in</a></li>
+      <li><b>Indian Knowledge Systems Division, Ministry of Education (2020)</b><span>Research and education on India's knowledge traditions.</span><a href="https://iksindia.org" target="_blank" rel="noopener">iksindia.org</a></li>
+    </ul>
+
+    <h2>International</h2>
+    <ul class="src-list">
+      <li><b>UNESCO Intangible Cultural Heritage</b><span>Convention for the Safeguarding of the Intangible Cultural Heritage (2003) and the Representative List.</span><a href="https://ich.unesco.org" target="_blank" rel="noopener">ich.unesco.org</a></li>
+      <li><b>UNESCO World Heritage Centre</b><span>World Heritage and Tentative Lists, including India's cultural landscapes.</span><a href="https://whc.unesco.org" target="_blank" rel="noopener">whc.unesco.org</a></li>
+    </ul>
+
+    <h2>Archives &amp; community projects</h2>
+    <ul class="src-list">
+      <li><b>Archives and Research Centre for Ethnomusicology (ARCE), American Institute of Indian Studies</b><span>Large collection of field recordings of Indian music.</span></li>
+      <li><b>Grindmill Songs Project, People's Archive of Rural India</b><span>Over one lakh women's grindmill songs from Maharashtra and Karnataka.</span><a href="https://ruralindiaonline.org" target="_blank" rel="noopener">ruralindiaonline.org</a></li>
+      <li><b>Sahapedia</b><span>Open encyclopedic resource on Indian arts, culture and heritage.</span><a href="https://www.sahapedia.org" target="_blank" rel="noopener">sahapedia.org</a></li>
+      <li><b>People's Linguistic Survey of India (2010 onward)</b><span>Citizen-led documentation of 780 living languages.</span></li>
+      <li><b>Crafts Council of India (est. 1964)</b><span>Founded in the spirit of Kamaladevi Chattopadhyay to support craftspeople.</span></li>
+    </ul>
+
+    <h2>Selected readings</h2>
+    <ul class="src-list books">
+      <li><b>Bharata</b><span><i>Natyashastra</i> (c. 200 BCE – 200 CE) — foundational treatise distinguishing classical (margi) and regional (desi) arts.</span></li>
+      <li><b>Matanga</b><span><i>Brihaddeshi</i> (c. 9th century) — early study of regional (desi) music.</span></li>
+      <li><b>George A. Grierson</b><span><i>Linguistic Survey of India</i> (1894–1928).</span></li>
+      <li><b>Lakshminath Bezbaroa</b><span><i>Burhi Aair Xadhu</i> (1911) — classic collection of Assamese folktales.</span></li>
+      <li><b>Verrier Elwin</b><span>Ethnographic works on the tribes of central and north-east India (1930s–1960s).</span></li>
+      <li><b>Kapila Vatsyayan</b><span><i>Traditions of Indian Folk Dance</i> (1976).</span></li>
+      <li><b>Kamaladevi Chattopadhyay</b><span><i>Handicrafts of India</i> — landmark survey of Indian crafts.</span></li>
+      <li><b>K. S. Singh (ed.)</b><span><i>People of India</i> national series, Anthropological Survey of India.</span></li>
+      <li><b>A. K. Ramanujan</b><span><i>Folktales from India</i> (1991).</span></li>
+      <li><b>Jyotindra Jain</b><span><i>Other Masters: Five Contemporary Folk and Tribal Artists of India</i> (1998).</span></li>
+      <li><b>Komal Kothari</b><span>Research on the musicians, puppeteers and oral epics of Rajasthan.</span></li>
+    </ul>
+
+    <section class="img-refs" id="imgRefs">
+      <h2>Image references</h2>
+      <p>Photographs are drawn live from <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> and <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>. Copyright stays with each photographer; every image is shown with its author, licence and a link to its source page. Load the full list below, or see the references column in the Cultural Database table view.</p>
+      <div class="form-actions"><button class="btn small primary" id="refsLoad">Load all image references</button><button class="btn small ghost" id="refsCsv">Export references (CSV)</button></div>
+      <p class="muted" id="refsStatus" aria-live="polite"></p>
+      <div class="db-table-wrap"><table class="db-table" id="refsTable"></table></div>
+    </section>
+
+    <div class="note">
+      <h2>A note on the data</h2>
+      <p>Entries summarise widely published information and are written to be accurate, respectful and positive. Periods indicate the earliest widely accepted origins, and vitality labels reflect general public knowledge rather than a formal census. Lokdhara grows stronger with every correction and contribution — practitioners and scholars are invited to help refine each record through the Contribute page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="page" data-page="contact" aria-labelledby="contactTitle">
+  <div class="wrap">
+    <header class="page-head">
+      <h1 id="contactTitle" data-i18n="contact_title">Contact &amp; contribute</h1>
+      <p class="lede">Every contribution adds a thread to the living stream. Share a tradition, suggest an improvement or join as a volunteer surveyor.</p>
+    </header>
+    <div class="ways">
+      <div><span>🪔</span><b>Share a tradition</b><p>Tell us about a dance, song, craft or festival from your region.</p></div>
+      <div><span>✍️</span><b>Improve an entry</b><p>Add details, sources or local names to an existing record.</p></div>
+      <div><span>🎙️</span><b>Send media</b><p>Offer recordings or photos made with the community's consent.</p></div>
+      <div><span>🧭</span><b>Become a surveyor</b><p>Document traditions in your district using the field survey.</p></div>
+      <div><span>🏛️</span><b>Partner with us</b><p>Schools, universities, museums and cultural organisations are welcome.</p></div>
+    </div>
+    <div class="contact-layout">
+      <form class="contact-form" id="contactForm" novalidate>
+        <label class="field"><span>Name *</span><input name="name" required autocomplete="name"></label>
+        <label class="field"><span>Email *</span><input type="email" name="email" required autocomplete="email"></label>
+        <label class="field"><span>I would like to</span>
+          <select name="type">
+            <option>Share a tradition</option><option>Improve an entry</option><option>Send media</option><option>Become a surveyor</option><option>Partner with Lokdhara</option><option>Ask a question</option>
+          </select>
+        </label>
+        <label class="field"><span>State / UT</span><select name="state" id="ctState"></select></label>
+        <label class="field full"><span>Message *</span><textarea name="msg" rows="6" required></textarea></label>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Send contribution</button>
+        </div>
+        <p class="form-msg" id="ctMsg" role="status"></p>
+      </form>
+      <aside class="contact-side">
+        <h2>Reach the team</h2>
+        <p>Email <a href="mailto:hello@lokdhara.org">hello@lokdhara.org</a></p>
+        <p>Contributions are reviewed with the help of subject experts and community members before publication.</p>
+        <h3>Frequently asked</h3>
+        <details><summary>Who can contribute?</summary><p>Anyone — students, teachers, artists, artisans, researchers and families who want to share their heritage.</p></details>
+        <details><summary>Will I receive credit?</summary><p>Yes. Contributors and tradition bearers are credited on each record they help build.</p></details>
+        <details><summary>Can I use Lokdhara data for research?</summary><p>Yes. Export the database from the Cultural Database page and cite Lokdhara along with the original sources.</p></details>
+        <details><summary>How is consent handled?</summary><p>Media and personal details are published only with the informed consent of the community and individuals involved.</p></details>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <b class="footer-brand" data-i18n="brand">Lokdhara</b>
+      <p data-i18n="motto">Preserve our culture. Celebrate our roots. Carry it forward.</p>
+      <button class="btn small ghost" id="gtBtn" data-i18n="translate_all">Translate full page</button>
+      <div id="gt"></div>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#database" data-i18n="nav_db">Cultural Database</a>
+      <a href="#map" data-i18n="nav_map">India Map</a>
+      <a href="#stats" data-i18n="nav_stats">Statistics</a>
+      <a href="#survey" data-i18n="nav_survey">Field Survey</a>
+    </nav>
+    <nav aria-label="Footer more">
+      <a href="#archive" data-i18n="nav_archive">Digital Archive</a>
+      <a href="#compare" data-i18n="nav_compare">Compare</a>
+      <a href="#research" data-i18n="nav_research">Research &amp; Reports</a>
+      <a href="#sources" data-i18n="nav_sources">Sources</a>
+    </nav>
+  </div>
+  <p class="footer-foot wrap">© 2026 Lokdhara Cultural Database. Made with gratitude to every tradition bearer of India.</p>
+</footer>
+
+<!-- ===================== MOBILE BOTTOM NAV ===================== -->
+<nav class="bottomnav" aria-label="Quick navigation">
+  <a href="#home" data-route="home"><span>🏠</span><small data-i18n="nav_home">Home</small></a>
+  <a href="#database" data-route="database"><span>📚</span><small data-i18n="bn_db">Database</small></a>
+  <a href="#map" data-route="map"><span>🗺️</span><small data-i18n="bn_map">Map</small></a>
+  <a href="#stats" data-route="stats"><span>📊</span><small data-i18n="bn_stats">Stats</small></a>
+  <button id="bottomMore"><span>☰</span><small data-i18n="nav_more">More</small></button>
+</nav>
+
+<!-- ===================== DIALOGS ===================== -->
+<dialog id="detail" class="detail" aria-labelledby="dTitle"></dialog>
+
+<dialog id="palette" class="palette" aria-label="Search">
+  <div class="pal-head">
+    <span class="glyph" aria-hidden="true">🔍</span>
+    <input id="palInput" type="search" data-i18n-ph="search_ph" placeholder="Search traditions, states, districts…" autocomplete="off">
+    <kbd>Esc</kbd>
+  </div>
+  <ul id="palResults" class="pal-results" role="listbox"></ul>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
